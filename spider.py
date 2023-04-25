@@ -6,6 +6,7 @@ import sqlite3
 page = None
 url = f'https://letterboxd.com/dave/list/official-top-250-narrative-feature-films/{page}'
 
+
 def get_links(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.content, features="html.parser")
@@ -67,8 +68,10 @@ def get_films(urls):
                 print('Missing character name')
             print(actor, character)
 
-
-
+        # POPULAR REVIEWS
+        popular_reviews = main_content.find('section', class_='film-recent-reviews')
+        if len(popular_reviews) > 0:
+            print(popular_reviews)
 
 
 # Define the range of pages to scrape
